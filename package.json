@@ -1,13 +1,13 @@
 {
-  "name": "lua-to-typescript",
-  "version": "0.3.1",
+  "name": "lua-to-typescript-fixed",
+  "version": "0.3.2",
   "description": "Transforms Lua to TypeScript code.",
   "keywords": [
     "lua",
     "typescript",
     "transpiler"
   ],
-  "repository": "hazzard993/LuaToTypeScript",
+  "repository": "lithric/LuaToTypeScriptFixed",
   "bugs": "https://github.com/hazzard993/LuaToTypeScript/issues",
   "homepage": "https://github.com/hazzard993/LuaToTypeScript#readme",
   "license": "MIT",
