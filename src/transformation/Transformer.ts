@@ -274,7 +274,7 @@ export class Transformer {
         operator = ts.SyntaxKind.ExclamationEqualsEqualsToken;
         break;
       default:
-        throw new Error("Unknown operator");
+        throw new Error(`[${node.loc.start.line,node.loc.start.column}] Unknown operator`);
     }
 
     return ts.factory.createBinaryExpression(
@@ -294,7 +294,7 @@ export class Transformer {
           ? ts.SyntaxKind.BarBarToken
           : undefined;
     if (!operator) {
-      throw new Error("Unknown operator");
+      throw new Error(`[${node.loc.start.line,node.loc.start.column}] Unknown operator`);
     }
 
     return ts.factory.createBinaryExpression(
@@ -324,7 +324,7 @@ export class Transformer {
         operator = ts.SyntaxKind.ExclamationToken;
         break;
       default:
-        throw new Error("Unknown operator");
+        throw new Error(`[${node.loc.start.line},${node.loc.start.column}] Unknown operator`);
     }
 
     return ts.factory.createPrefixUnaryExpression(
@@ -368,18 +368,16 @@ export class Transformer {
     );
     let lastIfStatement = rootIfStatement;
 
-    node.clauses.forEach((clause) => {
+    node.clauses.forEach((clause,i) => {
       switch (clause.type) {
         case "ElseifClause":
           // @ts-ignore: TODO: Use an alternate building method
-          lastIfStatement.elseStatement = ts.factory.createIf(
-            this.transformExpression(ifClause.condition),
+          lastIfStatement.elseStatement = ts.factory.createIfStatement(
+            this.transformExpression(ifClause.condition), 
             ts.factory.createBlock(
-              ifClause.body.map((statement) =>
-                this.transformStatement(statement),
-              ),
-              undefined,
-            ),
+              clause.body.map((statement) => 
+                this.transformStatement(statement)
+            ), undefined)
           );
           lastIfStatement = lastIfStatement.elseStatement as ts.IfStatement;
           break;
@@ -532,7 +530,7 @@ export class Transformer {
       (field) => field.type === "TableValue",
     );
     if (usingTableKeyStrings && usingTableValues) {
-      throw new Error("Cannot use table keys and values together");
+      throw new Error(`[${node.loc.start.line},${node.loc.start.column}] Cannot use table keys and values together`);
     }
 
     if (usingTableValues) {
@@ -879,7 +877,7 @@ export class Transformer {
     node: luaparse.FunctionDeclaration,
   ): ts.MethodDeclaration {
     if (node.identifier.type === "Identifier") {
-      throw new Error("Expected a member expression");
+      throw new Error(`[${node.loc.start.line,node.loc.start.column}] Expected a member expression`);
     }
 
     const comments = helper.getComments(this.chunk, node);
@@ -932,11 +930,11 @@ export class Transformer {
     const modifiers = [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)];
 
     if (node.identifier.type === "Identifier") {
-      throw new Error("Cannot export a non-MemberExpression function");
+      throw new Error(`[${node.loc.start.line,node.loc.start.column}] Cannot export a non-MemberExpression function`);
     }
 
     if (node.identifier.base.type === "MemberExpression") {
-      throw new Error("Cannot export nested member expression functions");
+      throw new Error(`[${node.loc.start.line,node.loc.start.column}] Cannot export nested member expression functions`);
     }
 
     const name = this.transformIdentifier(node.identifier.identifier);
