@@ -8,8 +8,8 @@
     "transpiler"
   ],
   "repository": "lithric/LuaToTypeScriptFixed",
-  "bugs": "https://github.com/lithric/LuaToTypeScript/issues",
-  "homepage": "https://github.com/lithric/LuaToTypeScript#readme",
+  "bugs": "https://github.com/lithric/LuaToTypeScriptFixed/issues",
+  "homepage": "https://github.com/lithric/LuaToTypeScriptFixed#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
