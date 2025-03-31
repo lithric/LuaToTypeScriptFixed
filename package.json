@@ -7,8 +7,13 @@
     "typescript",
     "transpiler"
   ],
-  "repository": "lithric/LuaToTypeScriptFixed",
-  "bugs": "https://github.com/lithric/LuaToTypeScriptFixed/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lithric/LuaToTypeScriptFixed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lithric/LuaToTypeScriptFixed/issues"
+  },
   "homepage": "https://github.com/lithric/LuaToTypeScriptFixed#readme",
   "license": "MIT",
   "main": "dist/index.js",
@@ -17,7 +22,7 @@
     "dist/*.js"
   ],
   "bin": {
-    "lttsf": "dist/index.js"
+    "ltts": "dist/index.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -38,5 +43,6 @@
     "fast-glob": "^3.3.2",
     "luaparse": "^0.3.1",
     "source-map": "^0.7.3"
-  }
+  },
+  "author": ""
 }
