@@ -6,19 +6,19 @@
 Transpiles Lua to TypeScript declaration and/or TypeScript source code.
 
 ```sh
-npm install -g lua-to-typescript
+npm install -g lua-to-typescript-fixed
 ```
 
 To transpile files...
 
 ```sh
-ltts main.lua
+lttsf main.lua
 # Generates main.ts
 
-ltts a.lua b.lua c.lua ...
+lttsf a.lua b.lua c.lua ...
 # Generates a.ts, b.ts, c.ts, ...
 
-ltts -d library.lua
+lttsf -d library.lua
 # Generates library.d.ts
 ```
 
